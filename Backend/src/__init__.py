@@ -5,6 +5,6 @@ def create_app(test_config=None):
 
     @app.route("/hello")
     def start():
-        return "Hello World!"
+        return {"message": "Hello World!"}
     
     return app
