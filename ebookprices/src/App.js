@@ -1,23 +1,18 @@
-import logo from './logo.svg';
+import logo from './EBookDBSmall.png'
 import './App.css';
+import BookTable from './BookTable';
+import { IconButton, Input } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <img src={logo} alt='app logo' height={150}/>
+    <div>
+      <Input></Input>
+      <IconButton aria-label="search"><SearchIcon /></IconButton>
+      <BookTable></BookTable>
+      </div>
     </div>
   );
 }
