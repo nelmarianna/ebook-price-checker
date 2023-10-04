@@ -27,11 +27,8 @@ def create_app():
             return exception_handler("Querying a book requires a field")
         try:
             result = search.searchGoogleApi(queryDict)
-            print(result)
-            return json.dumps(result)
+            return result
         except Exception as e:
             return exception_handler("Failed to query book, " + e.message())
-
-    # http://127.0.0.1:5000/getByIsbn/9781787285613
 
     return app

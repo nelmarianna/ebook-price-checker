@@ -23,7 +23,6 @@ class SearchGoogle:
 
     def parseGoogleResults(self, content):
         content = json.loads(content)
-        totalResults = content.get("totalItems", 0)
         bookInfo = []
         for item in content.get("items", []):
              itemDetails = {}
