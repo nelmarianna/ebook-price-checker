@@ -1,0 +1,4 @@
+DB_USER = 'developer'
+DB_PASSWORD = 'P@ssword!'
+DB_SERVER = 'DEV-4284088\MSSQLSERVER01'
+DB_DBNAME = 'Hackathon'
