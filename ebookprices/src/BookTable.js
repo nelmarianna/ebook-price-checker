@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { useMemo } from 'react';
+import PropTypes from "prop-types";
 import { Table, 
   TableBody, 
   TableCell, 
@@ -10,20 +11,24 @@ Button } from '@mui/material';
 
   const createData = (author, title, isbn, price) =>{ return {author, title, isbn, price}};
 
-  const rows = [
-    createData('Placeholder', 'A Placeholder book', '1234567', 45.34),
-    createData('Placeholder2', 'A Placeholder book2', '1234568', 45.34),
-    createData('Placeholder3', 'A Placeholder book3', '1234569', 45.34),
-    createData('Placeholder4', 'A Placeholder book4', '12345610', 45.34)
-]
+const BookTable = ({bookData}) => {
 
-const BookTable = () => (
+    const rows = useMemo(()=>{
+        if(!Object.keys(bookData).length) return [];
+        return bookData.results.map(bd => createData(bd.volumeInfo.authors[0], bd.volumeInfo.title, bd.volumeInfo.industryIdentifiers[0].identifier,(Math.round(bd.saleInfo.listPrice.amount * 100) / 100).toFixed(2) + " "+ bd.saleInfo.listPrice.currencyCode));
+
+    }, [bookData])
+
+    if(Object.keys(bookData).length > 0){
+    }
+
+return(
     <TableContainer component={Paper}>
         <Table>
             <TableHead>
-                <TableRow>
-                   <TableCell>Author</TableCell> 
+                <TableRow>   
                    <TableCell>Title</TableCell> 
+                   <TableCell>Author</TableCell> 
                    <TableCell>ISBN</TableCell> 
                    <TableCell>Lowest Price</TableCell> 
                    <TableCell>Compare Prices</TableCell>
@@ -32,8 +37,8 @@ const BookTable = () => (
             <TableBody>
                 {rows.map((row)=>(
                     <TableRow key={row.isbn}>
-                        <TableCell>{row.author}</TableCell>
                         <TableCell>{row.title}</TableCell>
+                        <TableCell>{row.author}</TableCell>
                         <TableCell>{row.isbn}</TableCell>
                         <TableCell>{row.price}</TableCell>
                         <TableCell><Button variant="outlined">Check Price</Button></TableCell>
@@ -43,6 +48,10 @@ const BookTable = () => (
             </TableBody>
         </Table>
     </TableContainer>
-);
+);}
+
+BookTable.propTypes ={
+    bookData: PropTypes.object
+}
 
 export default BookTable;
