@@ -12,7 +12,7 @@ function App() {
   const submitSearch = (value) => {
 
     fetch("/getByIsbn", 
-        {method: "POST", headers: {"Content-Type":"application/json"}, body: `{"author": "${value}"}`}
+        {method: "POST", headers: {"Content-Type":"application/json"}, body: `{"keywords": "${value}"}`}
         ).then((res)=>{
           res.json().then((data)=> setdata(data))
         });
