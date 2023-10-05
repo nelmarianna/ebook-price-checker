@@ -38,6 +38,11 @@ https://www.microsoft.com/en-ca/sql-server/sql-server-downloads
 ```
 When it finishes downloading you will see an option to download SSMS (SQL Server Management Studio) which you will need. 
 
+You will also need to download a driver and connector which can be done here:
+```
+https://learn.microsoft.com/en-us/sql/connect/python/pyodbc/python-sql-driver-pyodbc?view=sql-server-ver16
+``` 
+
 After opening SSMS, we can start by creating a database. So under the Server, right click "database" and create a new Database. You can name it what ever you want, but I did "Hackathon" as this will be required for the next step.
 
 Now we will create a user in order for the python backend code to access the database. This can be done using: 
