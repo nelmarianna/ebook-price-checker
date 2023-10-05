@@ -13,7 +13,7 @@ def exception_handler(message):
 def create_app():
     app = Flask(__name__)
     db = database()
-    search = SearchGoogle()
+    search = SearchGoogle(db)
 
     @app.route("/hello")
     def start():

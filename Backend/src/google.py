@@ -2,8 +2,8 @@ import requests
 import json
 
 class SearchGoogle:
-    def __init__(self):
-        pass
+    def __init__(self, db):
+        self.db = db
 
     def searchGoogleApi(self, queryParams):
         query = ""
