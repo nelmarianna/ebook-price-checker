@@ -4,7 +4,8 @@ import { Table,
   TableCell, 
   TableContainer, 
   TableHead, 
-  TableRow } from '@mui/material';
+  TableRow,
+Button } from '@mui/material';
   import Paper from '@mui/material/Paper';
 
   const createData = (author, title, isbn, price) =>{ return {author, title, isbn, price}};
@@ -24,7 +25,8 @@ const BookTable = () => (
                    <TableCell>Author</TableCell> 
                    <TableCell>Title</TableCell> 
                    <TableCell>ISBN</TableCell> 
-                   <TableCell>Price</TableCell> 
+                   <TableCell>Lowest Price</TableCell> 
+                   <TableCell>Compare Prices</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -34,6 +36,7 @@ const BookTable = () => (
                         <TableCell>{row.title}</TableCell>
                         <TableCell>{row.isbn}</TableCell>
                         <TableCell>{row.price}</TableCell>
+                        <TableCell><Button variant="outlined">Check Price</Button></TableCell>
                     </TableRow>
                     
                 ))}

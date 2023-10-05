@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import logo from './EBookDBSmall.png'
 import './App.css';
 import BookTable from './BookTable';
-import { IconButton, Input } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import SearchField from "./SearchField";
+import Box from '@mui/material/Box';
+import { Container } from "@mui/system";
 
 function App() {
   const [data, setdata] = useState({
@@ -16,21 +17,23 @@ function App() {
       setdata({
         message: data.message
       });
+      console.log("fetched");
     }));
   }, []);
 
   return (
-    <div className="App">
-    <img src={logo} alt='app logo' height={150}/>
-    <header>
-      <h1>Flask Message</h1>
-      <p>{data.message}</p>
-    </header>
     <div>
-      <Input></Input>
-      <IconButton aria-label="search"><SearchIcon /></IconButton>
+    <Container>
+      <Box sx={{ display: { xs: 'flex'} }}>
+        <img src={logo} alt='app logo' height={150}/>
+      </Box> 
+    </Container>
+    <Container className="search-bar">
+        <SearchField></SearchField> 
+     </Container>
+    <Container>
       <BookTable></BookTable>
-      </div>
+    </Container>
     </div>
   );
 }
