@@ -1,8 +1,10 @@
 from flask import Flask, Response, request
 import requests
 from src.google import SearchGoogle
+from src.db import database
 import json
 import re
+from random import randrange
 
 def exception_handler(message):
     status_code = 400
@@ -10,6 +12,7 @@ def exception_handler(message):
 
 def create_app():
     app = Flask(__name__)
+    db = database()
     search = SearchGoogle()
 
     @app.route("/hello")
@@ -37,5 +40,17 @@ def create_app():
             return result
         except Exception as e:
             return exception_handler("Failed to query book, " + e.message())
-
+        
+    @app.route("/testDB/<num>", methods=['GET'])
+    def testDB(num):
+        key = randrange(0, 1000000)
+        query = "insert into test values (?, ?)"
+        params = [key, num]
+        db.insert(query, params)
+        result = db.execute("select * from test", [])
+        resDict = {}
+        for row in result:
+            resDict[row[0]] = row[1]
+        return resDict
+            
     return app
