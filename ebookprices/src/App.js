@@ -7,20 +7,31 @@ import Box from '@mui/material/Box';
 import { Container } from "@mui/system";
 
 function App() {
-  const [data, setdata] = useState({
-    message: ""
-  });
+  const [data, setdata] = useState({});
 
-  useEffect(()=>{
-    fetch("/hello").then((res)=>
-    res.json().then((data)=>{
-      setdata({
-        message: data.message
-      });
-      console.log("fetched");
-    }));
-  }, []);
+  // useEffect(()=>{
+  //   fetch("/hello").then((res)=>
+  //   res.json().then((data)=>{
+  //     setdata({
+  //       message: data.message
+  //     });
+  //     console.log("fetched");
+  //   }));
+  // }, []);
 
+
+  const submitSearch = (value) => {
+
+    fetch("/getByIsbn", 
+        {method: "POST", headers: {"Content-Type":"application/json"}, body: `{"author": "${value}"}`}
+        ).then((res)=>{
+          console.log(res);
+          res.json().then((data)=> console.log(data))
+          
+        });
+}
+
+  
   return (
     <div>
     <Container>
@@ -29,7 +40,7 @@ function App() {
       </Box> 
     </Container>
     <Container className="search-bar">
-        <SearchField></SearchField> 
+        <SearchField handleSubmit={submitSearch}></SearchField> 
      </Container>
     <Container>
       <BookTable></BookTable>
