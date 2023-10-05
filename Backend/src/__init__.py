@@ -14,7 +14,7 @@ def create_app():
 
     @app.route("/hello")
     def start():
-        return "Hello World!"
+        return {"message": "Hello World!"}
     
     @app.route("/getByIsbn", methods=['POST'])
     def searchByIsbn():
@@ -33,6 +33,7 @@ def create_app():
             queryDict['keywords'] = None
         try:
             result = search.searchGoogleApi(queryDict)
+
             return result
         except Exception as e:
             return exception_handler("Failed to query book, " + e.message())

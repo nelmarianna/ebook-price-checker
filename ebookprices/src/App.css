@@ -1,5 +1,16 @@
-.App {
+ body {
   text-align: center;
+  background-color:#282c34;
+
+  
+}
+.search-bar {
+  padding: 15px;
+}
+
+::placeholder {
+ color:#282c34;
+ opacity: 1;
 }
 
 .App-logo {
